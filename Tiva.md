@@ -64,5 +64,5 @@ high-level environment, check
 http://www.ti.com/lsds/ti/arm/arm_cortex_m_microcontrollers/arm_cortex_m4/stellaris_arm_cortex_m4f/toolsw.page
 for some options.
 Keil uVision 4 has built-in compiler and debugger, but the free version is pretty limited
-(http://www.keil.com/demo/limits.asp). The Energia project (energia.nu) provides
+(http://www.keil.com/demo/limits.asp). The Energia project (http://energia.nu) provides
 an Arduino-like interface and Arduino compatible functions and is a great choice, too.
