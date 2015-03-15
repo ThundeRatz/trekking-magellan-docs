@@ -1,0 +1,213 @@
+\hypertarget{group__leds}{}\section{L\+E\+Ds}
+\label{group__leds}\index{L\+E\+Ds@{L\+E\+Ds}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__leds_gacdf2063c18461f6ed748ca0d54029f36}{leds\+\_\+init} ()
+\begin{DoxyCompactList}\small\item\em Initialize L\+E\+Ds. \end{DoxyCompactList}\item 
+static void \hyperlink{group__leds_ga3059ca5de6fa3eda8695764f79a967ab}{leds\+\_\+r} (uint32\+\_\+t brightness)
+\begin{DoxyCompactList}\small\item\em Set red L\+E\+D. \end{DoxyCompactList}\item 
+static void \hyperlink{group__leds_ga8d3bb4e738e4b7b0ef8d2ec843158c1e}{leds\+\_\+b} (uint32\+\_\+t brightness)
+\begin{DoxyCompactList}\small\item\em Set blue L\+E\+D. \end{DoxyCompactList}\item 
+static void \hyperlink{group__leds_ga2d5fd09313de81e1f9ec58f7482684b2}{leds\+\_\+g} (uint32\+\_\+t brightness)
+\begin{DoxyCompactList}\small\item\em Set green L\+E\+D. \end{DoxyCompactList}\item 
+static void \hyperlink{group__leds_ga960be609eb29a47eedea0f056e151f38}{leds\+\_\+status} (uint32\+\_\+t brightness)
+\begin{DoxyCompactList}\small\item\em Set status L\+E\+D. \end{DoxyCompactList}\item 
+static void \hyperlink{group__leds_ga91c5211949568d8ae8ea90fc3d4ae3b7}{leds\+\_\+lbatt} (uint32\+\_\+t brightness)
+\begin{DoxyCompactList}\small\item\em Set low battery L\+E\+D. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Function Documentation}
+\hypertarget{group__leds_ga8d3bb4e738e4b7b0ef8d2ec843158c1e}{}\index{L\+E\+Ds@{L\+E\+Ds}!leds\+\_\+b@{leds\+\_\+b}}
+\index{leds\+\_\+b@{leds\+\_\+b}!L\+E\+Ds@{L\+E\+Ds}}
+\subsubsection[{leds\+\_\+b}]{\setlength{\rightskip}{0pt plus 5cm}static void leds\+\_\+b (
+\begin{DoxyParamCaption}
+\item[{uint32\+\_\+t}]{brightness}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{group__leds_ga8d3bb4e738e4b7b0ef8d2ec843158c1e}
+
+
+Set blue L\+E\+D. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em brightness} & blue value \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 66 of file leds.\+h.
+
+
+\begin{DoxyCode}
+66                                                \{
+67     ROM\_PWMPulseWidthSet(PWM1\_BASE, PWM\_OUT\_6, brightness);
+68 \}
+\end{DoxyCode}
+\hypertarget{group__leds_ga2d5fd09313de81e1f9ec58f7482684b2}{}\index{L\+E\+Ds@{L\+E\+Ds}!leds\+\_\+g@{leds\+\_\+g}}
+\index{leds\+\_\+g@{leds\+\_\+g}!L\+E\+Ds@{L\+E\+Ds}}
+\subsubsection[{leds\+\_\+g}]{\setlength{\rightskip}{0pt plus 5cm}static void leds\+\_\+g (
+\begin{DoxyParamCaption}
+\item[{uint32\+\_\+t}]{brightness}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{group__leds_ga2d5fd09313de81e1f9ec58f7482684b2}
+
+
+Set green L\+E\+D. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em brightness} & green value \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 74 of file leds.\+h.
+
+
+\begin{DoxyCode}
+74                                                \{
+75     ROM\_PWMPulseWidthSet(PWM1\_BASE, PWM\_OUT\_7, brightness);
+76 \}
+\end{DoxyCode}
+\hypertarget{group__leds_gacdf2063c18461f6ed748ca0d54029f36}{}\index{L\+E\+Ds@{L\+E\+Ds}!leds\+\_\+init@{leds\+\_\+init}}
+\index{leds\+\_\+init@{leds\+\_\+init}!L\+E\+Ds@{L\+E\+Ds}}
+\subsubsection[{leds\+\_\+init}]{\setlength{\rightskip}{0pt plus 5cm}void leds\+\_\+init (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{group__leds_gacdf2063c18461f6ed748ca0d54029f36}
+
+
+Initialize L\+E\+Ds. 
+
+Initialize M1\+P\+W\+M5, M1\+P\+W\+M6, M1\+P\+W\+M7 (Tiva R\+G\+B L\+E\+D) and M0\+P\+W\+M0, M0\+P\+W\+M1 (S\+T\+A\+T\+U\+S and L\+B\+A\+T\+T). Period is set to 4096. 
+
+Definition at line 63 of file leds.\+c.
+
+
+\begin{DoxyCode}
+63                  \{
+64     \textcolor{comment}{// Configure PF1, PF2, PF3 (RGB LED), PB6 (STATUS) and PB7 (L. BAT) as PWM}
+65     ROM\_GPIOPinConfigure(GPIO\_PF1\_M1PWM5);
+66     ROM\_GPIOPinConfigure(GPIO\_PF2\_M1PWM6);
+67     ROM\_GPIOPinConfigure(GPIO\_PF3\_M1PWM7);
+68     ROM\_GPIOPinConfigure(GPIO\_PB6\_M0PWM0);
+69     ROM\_GPIOPinConfigure(GPIO\_PB7\_M0PWM1);
+70     ROM\_GPIOPinTypePWM(GPIO\_PORTF\_BASE, GPIO\_PIN\_1 | GPIO\_PIN\_2 | GPIO\_PIN\_3);
+71     ROM\_GPIOPinTypePWM(GPIO\_PORTB\_BASE, GPIO\_PIN\_6 | GPIO\_PIN\_7);
+72     
+73     \textcolor{comment}{// PWM\_GEN\_2 covers M1PWM4 and M1PWM5}
+74     \textcolor{comment}{// PWM\_GEN\_3 covers M1PWM6 and M1PWM7}
+75     \textcolor{comment}{// PWM\_GEN\_MODE\_DBG\_RUN configures the PWM to keep sending signals when the}
+76     \textcolor{comment}{// board is stopped by a debugger. Use for LEDs and other safe stuff, but}
+77     \textcolor{comment}{// BE CAREFUL with motors (we don't want the robot to keep running if}
+78     \textcolor{comment}{// accidentally interrupted by ICDI!)}
+79     ROM\_PWMGenConfigure(PWM1\_BASE, PWM\_GEN\_2, PWM\_GEN\_MODE\_UP\_DOWN | PWM\_GEN\_MODE\_NO\_SYNC |
+80         PWM\_GEN\_MODE\_DBG\_RUN | PWM\_GEN\_MODE\_DB\_NO\_SYNC| PWM\_GEN\_MODE\_FAULT\_UNLATCHED |
+81         PWM\_GEN\_MODE\_FAULT\_NO\_MINPER);
+82     ROM\_PWMGenConfigure(PWM1\_BASE, PWM\_GEN\_3, PWM\_GEN\_MODE\_UP\_DOWN | PWM\_GEN\_MODE\_NO\_SYNC |
+83         PWM\_GEN\_MODE\_DBG\_RUN | PWM\_GEN\_MODE\_DB\_NO\_SYNC | PWM\_GEN\_MODE\_FAULT\_UNLATCHED |
+84         PWM\_GEN\_MODE\_FAULT\_NO\_MINPER);
+85     
+86     \textcolor{comment}{// PWM\_GEN\_0 covers M0PWM0 and M0PWM1}
+87     ROM\_PWMGenConfigure(PWM0\_BASE, PWM\_GEN\_0, PWM\_GEN\_MODE\_UP\_DOWN | PWM\_GEN\_MODE\_NO\_SYNC |
+88         PWM\_GEN\_MODE\_DBG\_RUN | PWM\_GEN\_MODE\_DB\_NO\_SYNC| PWM\_GEN\_MODE\_FAULT\_UNLATCHED |
+89         PWM\_GEN\_MODE\_FAULT\_NO\_MINPER);
+90     
+91     \textcolor{comment}{// Set the Period (in clock ticks)}
+92     ROM\_PWMGenPeriodSet(PWM1\_BASE, PWM\_GEN\_2, 4096);
+93     ROM\_PWMGenPeriodSet(PWM1\_BASE, PWM\_GEN\_3, 4096);
+94     ROM\_PWMGenPeriodSet(PWM0\_BASE, PWM\_GEN\_0, 4096);
+95     
+96     \textcolor{comment}{// Enable the PWM generator}
+97     ROM\_PWMGenEnable(PWM1\_BASE, PWM\_GEN\_2);
+98     ROM\_PWMGenEnable(PWM1\_BASE, PWM\_GEN\_3);
+99     ROM\_PWMGenEnable(PWM0\_BASE, PWM\_GEN\_0);
+100     
+101     \textcolor{comment}{// Enable PWM}
+102     ROM\_PWMOutputState(PWM1\_BASE, PWM\_OUT\_5\_BIT | PWM\_OUT\_6\_BIT | PWM\_OUT\_7\_BIT, \textcolor{keyword}{true});
+103     ROM\_PWMOutputState(PWM0\_BASE, PWM\_OUT\_0\_BIT | PWM\_OUT\_1\_BIT, \textcolor{keyword}{true});
+104 \}
+\end{DoxyCode}
+\hypertarget{group__leds_ga91c5211949568d8ae8ea90fc3d4ae3b7}{}\index{L\+E\+Ds@{L\+E\+Ds}!leds\+\_\+lbatt@{leds\+\_\+lbatt}}
+\index{leds\+\_\+lbatt@{leds\+\_\+lbatt}!L\+E\+Ds@{L\+E\+Ds}}
+\subsubsection[{leds\+\_\+lbatt}]{\setlength{\rightskip}{0pt plus 5cm}static void leds\+\_\+lbatt (
+\begin{DoxyParamCaption}
+\item[{uint32\+\_\+t}]{brightness}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{group__leds_ga91c5211949568d8ae8ea90fc3d4ae3b7}
+
+
+Set low battery L\+E\+D. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em brightness} & low battery brightness value \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 90 of file leds.\+h.
+
+
+\begin{DoxyCode}
+90                                                    \{
+91     ROM\_PWMPulseWidthSet(PWM0\_BASE, PWM\_OUT\_1, brightness);
+92 \}
+\end{DoxyCode}
+\hypertarget{group__leds_ga3059ca5de6fa3eda8695764f79a967ab}{}\index{L\+E\+Ds@{L\+E\+Ds}!leds\+\_\+r@{leds\+\_\+r}}
+\index{leds\+\_\+r@{leds\+\_\+r}!L\+E\+Ds@{L\+E\+Ds}}
+\subsubsection[{leds\+\_\+r}]{\setlength{\rightskip}{0pt plus 5cm}static void leds\+\_\+r (
+\begin{DoxyParamCaption}
+\item[{uint32\+\_\+t}]{brightness}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{group__leds_ga3059ca5de6fa3eda8695764f79a967ab}
+
+
+Set red L\+E\+D. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em brightness} & red value \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 58 of file leds.\+h.
+
+
+\begin{DoxyCode}
+58                                                \{
+59     ROM\_PWMPulseWidthSet(PWM1\_BASE, PWM\_OUT\_5, brightness);
+60 \}
+\end{DoxyCode}
+\hypertarget{group__leds_ga960be609eb29a47eedea0f056e151f38}{}\index{L\+E\+Ds@{L\+E\+Ds}!leds\+\_\+status@{leds\+\_\+status}}
+\index{leds\+\_\+status@{leds\+\_\+status}!L\+E\+Ds@{L\+E\+Ds}}
+\subsubsection[{leds\+\_\+status}]{\setlength{\rightskip}{0pt plus 5cm}static void leds\+\_\+status (
+\begin{DoxyParamCaption}
+\item[{uint32\+\_\+t}]{brightness}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{group__leds_ga960be609eb29a47eedea0f056e151f38}
+
+
+Set status L\+E\+D. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em brightness} & status brightness value \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 82 of file leds.\+h.
+
+
+\begin{DoxyCode}
+82                                                     \{
+83     ROM\_PWMPulseWidthSet(PWM0\_BASE, PWM\_OUT\_0, brightness);
+84 \}
+\end{DoxyCode}

@@ -1,0 +1,94 @@
+\hypertarget{group__uart}{}\section{U\+A\+R\+T0 command receiver}
+\label{group__uart}\index{U\+A\+R\+T0 command receiver@{U\+A\+R\+T0 command receiver}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__uart_ga3f4ebb565f4802a75c80bd3d72df4e72}{U\+A\+R\+T\+\_\+init} ()
+\begin{DoxyCompactList}\small\item\em Initialize U\+A\+R\+T. \end{DoxyCompactList}\item 
+void \hyperlink{group__uart_ga8fc8eb5451c07e3fc9b7981ac0fb0cc9}{U\+A\+R\+T\+\_\+\+I\+S\+R} ()
+\begin{DoxyCompactList}\small\item\em U\+A\+R\+T Interrupt Service Routine. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Function Documentation}
+\hypertarget{group__uart_ga3f4ebb565f4802a75c80bd3d72df4e72}{}\index{U\+A\+R\+T0 command receiver@{U\+A\+R\+T0 command receiver}!U\+A\+R\+T\+\_\+init@{U\+A\+R\+T\+\_\+init}}
+\index{U\+A\+R\+T\+\_\+init@{U\+A\+R\+T\+\_\+init}!U\+A\+R\+T0 command receiver@{U\+A\+R\+T0 command receiver}}
+\subsubsection[{U\+A\+R\+T\+\_\+init}]{\setlength{\rightskip}{0pt plus 5cm}void U\+A\+R\+T\+\_\+init (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{group__uart_ga3f4ebb565f4802a75c80bd3d72df4e72}
+
+
+Initialize U\+A\+R\+T. 
+
+Initialize U\+A\+R\+T0 for receiving commands. Uses pins P\+A0 and P\+A1 and 2400 baud. Its interrupt has priority 1. 
+
+Definition at line 67 of file uart.\+c.
+
+
+\begin{DoxyCode}
+67                  \{
+68     \textcolor{comment}{// Configure PA0, PA1 as UART}
+69     ROM\_GPIOPinConfigure(GPIO\_PA0\_U0RX);
+70     ROM\_GPIOPinConfigure(GPIO\_PA1\_U0TX);
+71     ROM\_GPIOPinTypeUART(GPIO\_PORTA\_BASE, GPIO\_PIN\_0 | GPIO\_PIN\_1);
+72     
+73     ROM\_UARTConfigSetExpClk(UART0\_BASE, SYSTEM\_CLOCK, 2400,
+74         (UART\_CONFIG\_WLEN\_8 | UART\_CONFIG\_STOP\_ONE | UART\_CONFIG\_PAR\_NONE));
+75     
+76     ROM\_IntPrioritySet(INT\_UART0, 1 << 5);
+77     ROM\_IntEnable(INT\_UART0);
+78     ROM\_UARTIntEnable(UART0\_BASE, UART\_INT\_OE | UART\_INT\_BE |
+79         UART\_INT\_PE | UART\_INT\_FE | UART\_INT\_RT | UART\_INT\_RX);
+80 \}
+\end{DoxyCode}
+\hypertarget{group__uart_ga8fc8eb5451c07e3fc9b7981ac0fb0cc9}{}\index{U\+A\+R\+T0 command receiver@{U\+A\+R\+T0 command receiver}!U\+A\+R\+T\+\_\+\+I\+S\+R@{U\+A\+R\+T\+\_\+\+I\+S\+R}}
+\index{U\+A\+R\+T\+\_\+\+I\+S\+R@{U\+A\+R\+T\+\_\+\+I\+S\+R}!U\+A\+R\+T0 command receiver@{U\+A\+R\+T0 command receiver}}
+\subsubsection[{U\+A\+R\+T\+\_\+\+I\+S\+R}]{\setlength{\rightskip}{0pt plus 5cm}void U\+A\+R\+T\+\_\+\+I\+S\+R (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{group__uart_ga8fc8eb5451c07e3fc9b7981ac0fb0cc9}
+
+
+U\+A\+R\+T Interrupt Service Routine. 
+
+Calls \hyperlink{group__motors_ga2974c2cf5e3983d657ff575f24ed8854}{motors()} with received commands. \begin{DoxySeeAlso}{See also}
+\hyperlink{group__motors_ga2974c2cf5e3983d657ff575f24ed8854}{motors} 
+\end{DoxySeeAlso}
+
+
+Definition at line 107 of file uart.\+c.
+
+
+\begin{DoxyCode}
+107                 \{
+108     uint32\_t int\_status;
+109     \hyperlink{group__leds_ga8d3bb4e738e4b7b0ef8d2ec843158c1e}{leds\_b}(4000);
+110     int\_status = ROM\_UARTIntStatus(UART0\_BASE, \textcolor{keyword}{true});
+111     ROM\_UARTIntClear(UART0\_BASE, int\_status);
+112     
+113     \textcolor{comment}{// Iterate over each status bit}
+114     \textcolor{keywordflow}{for} (; int\_status; int\_status &= int\_status - 1) \{
+115         \textcolor{keywordflow}{switch} (int\_status & -int\_status) \{
+116             \textcolor{keywordflow}{case} UART\_INT\_RX:
+117             \hyperlink{group__watchdog_ga1fdcf7b3f0948400f710d14490e49528}{watchdog\_reset}();
+118             \textcolor{keywordflow}{while} (ROM\_UARTCharsAvail(UART0\_BASE))
+119                 \hyperlink{group__motors_ga2974c2cf5e3983d657ff575f24ed8854}{motors}(ROM\_UARTCharGet(UART0\_BASE));
+120             \textcolor{keywordflow}{break};
+121             
+122             \textcolor{keywordflow}{case} UART\_INT\_OE: \textcolor{keywordflow}{case} UART\_INT\_BE:
+123             \textcolor{keywordflow}{case} UART\_INT\_PE: \textcolor{keywordflow}{case} UART\_INT\_FE:
+124             \textcolor{keywordflow}{case} UART\_INT\_RT:
+125             \hyperlink{group__leds_ga960be609eb29a47eedea0f056e151f38}{leds\_status}(4095);
+126 \textcolor{preprocessor}{#ifdef DEBUG}
+127             error\_count[\_\_builtin\_clz(int\_status)]++;
+128 \textcolor{preprocessor}{#endif}
+129             \textcolor{keywordflow}{break};
+130         \}
+131     \}
+132 \}
+\end{DoxyCode}

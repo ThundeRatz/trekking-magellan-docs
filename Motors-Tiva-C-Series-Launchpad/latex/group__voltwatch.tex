@@ -1,0 +1,81 @@
+\hypertarget{group__voltwatch}{}\section{Voltwatch}
+\label{group__voltwatch}\index{Voltwatch@{Voltwatch}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__voltwatch_gac3f0048d0c489ddacbd28d108efa047f}{voltwatch\+\_\+init} ()
+\begin{DoxyCompactList}\small\item\em Initialize voltwatch. \end{DoxyCompactList}\item 
+void \hyperlink{group__voltwatch_ga3dd023503d7779ef4f95c2152ca7883c}{voltwatch\+\_\+\+I\+S\+R} ()
+\begin{DoxyCompactList}\small\item\em Voltwatch Interrupt Service Routine. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Function Documentation}
+\hypertarget{group__voltwatch_gac3f0048d0c489ddacbd28d108efa047f}{}\index{Voltwatch@{Voltwatch}!voltwatch\+\_\+init@{voltwatch\+\_\+init}}
+\index{voltwatch\+\_\+init@{voltwatch\+\_\+init}!Voltwatch@{Voltwatch}}
+\subsubsection[{voltwatch\+\_\+init}]{\setlength{\rightskip}{0pt plus 5cm}void voltwatch\+\_\+init (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{group__voltwatch_gac3f0048d0c489ddacbd28d108efa047f}
+
+
+Initialize voltwatch. 
+
+Initialize A\+D\+C0 and use S\+S3 to sample battery voltage and issue an interrupt. Has lowest priority (7). \begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000001}{Todo}]Change to A\+D\+C\+\_\+\+T\+R\+I\+G\+G\+E\+R\+\_\+\+T\+I\+M\+E\+R and configure a timer \end{DoxyRefDesc}
+
+
+Definition at line 63 of file voltwatch.\+c.
+
+
+\begin{DoxyCode}
+63                       \{
+64     ROM\_GPIOPinTypeADC(GPIO\_PORTE\_BASE, GPIO\_PIN\_3);
+65     
+66     ADCClockConfigSet(ADC0\_BASE, ADC\_CLOCK\_SRC\_PIOSC | ADC\_CLOCK\_RATE\_EIGHTH, 1);
+67     ROM\_ADCHardwareOversampleConfigure(ADC0\_BASE, 32);
+68     \textcolor{comment}{}
+69 \textcolor{comment}{    ///@todo Change to ADC\_TRIGGER\_TIMER and configure a timer}
+70 \textcolor{comment}{}    ROM\_ADCSequenceConfigure(ADC0\_BASE, 3, ADC\_TRIGGER\_ALWAYS, 0);
+71     ROM\_ADCSequenceStepConfigure(ADC0\_BASE, 3, 0, ADC\_CTL\_CH1 | ADC\_CTL\_END |
+72         ADC\_CTL\_IE);
+73     
+74     ROM\_ADCSequenceEnable(ADC0\_BASE, 3);
+75     ROM\_IntPrioritySet(INT\_ADC0SS3, 7 << 5);
+76     ROM\_IntEnable(INT\_ADC0SS3);
+77     ROM\_ADCIntEnable(ADC0\_BASE, 3);
+78 \}
+\end{DoxyCode}
+\hypertarget{group__voltwatch_ga3dd023503d7779ef4f95c2152ca7883c}{}\index{Voltwatch@{Voltwatch}!voltwatch\+\_\+\+I\+S\+R@{voltwatch\+\_\+\+I\+S\+R}}
+\index{voltwatch\+\_\+\+I\+S\+R@{voltwatch\+\_\+\+I\+S\+R}!Voltwatch@{Voltwatch}}
+\subsubsection[{voltwatch\+\_\+\+I\+S\+R}]{\setlength{\rightskip}{0pt plus 5cm}void voltwatch\+\_\+\+I\+S\+R (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{group__voltwatch_ga3dd023503d7779ef4f95c2152ca7883c}
+
+
+Voltwatch Interrupt Service Routine. 
+
+Called when the A\+D\+C has data for us. Sets red and green led according to battery voltage. 
+
+Definition at line 85 of file voltwatch.\+c.
+
+
+\begin{DoxyCode}
+85                      \{
+86     uint32\_t voltage;
+87     
+88     ROM\_ADCIntClear(ADC0\_BASE, 3);
+89     \textcolor{comment}{// If a FIFO buffer is needed (eg. you need a series of measurements with}
+90     \textcolor{comment}{// small periods), sampler 0 has a 8 sample buffer and 1 and 2 have a}
+91     \textcolor{comment}{// 4 sample buffer}
+92     ROM\_ADCSequenceDataGet(ADC0\_BASE, 3, &voltage);
+93     
+94     \hyperlink{group__leds_ga3059ca5de6fa3eda8695764f79a967ab}{leds\_r}(4095 - voltage);
+95     \hyperlink{group__leds_ga2d5fd09313de81e1f9ec58f7482684b2}{leds\_g}(voltage);
+96 \}
+\end{DoxyCode}

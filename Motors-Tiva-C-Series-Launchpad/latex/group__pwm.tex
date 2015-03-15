@@ -1,0 +1,50 @@
+\hypertarget{group__pwm}{}\section{P\+W\+M}
+\label{group__pwm}\index{P\+W\+M@{P\+W\+M}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{group__pwm_ga8012fbf9dc9692e50f921e9b97653401}{pwm\+\_\+init} ()
+\begin{DoxyCompactList}\small\item\em Initialize P\+W\+M clock generation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Function Documentation}
+\hypertarget{group__pwm_ga8012fbf9dc9692e50f921e9b97653401}{}\index{P\+W\+M@{P\+W\+M}!pwm\+\_\+init@{pwm\+\_\+init}}
+\index{pwm\+\_\+init@{pwm\+\_\+init}!P\+W\+M@{P\+W\+M}}
+\subsubsection[{pwm\+\_\+init}]{\setlength{\rightskip}{0pt plus 5cm}static void pwm\+\_\+init (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\label{group__pwm_ga8012fbf9dc9692e50f921e9b97653401}
+
+
+Initialize P\+W\+M clock generation. 
+
+Set the clock divider. Specific configurations for P\+W\+M modules, banks and pins are left for other files. 
+
+Definition at line 55 of file pwm.\+h.
+
+
+\begin{DoxyCode}
+55                               \{
+56 \textcolor{preprocessor}{#if PWM\_CLOCK\_DIV == 1}
+57     ROM\_SysCtlPWMClockSet(SYSCTL\_PWMDIV\_1);
+58 \textcolor{preprocessor}{#elif PWM\_CLOCK\_DIV == 2}
+59     ROM\_SysCtlPWMClockSet(SYSCTL\_PWMDIV\_2);
+60 \textcolor{preprocessor}{#elif PWM\_CLOCK\_DIV == 4}
+61     ROM\_SysCtlPWMClockSet(SYSCTL\_PWMDIV\_4);
+62 \textcolor{preprocessor}{#elif PWM\_CLOCK\_DIV == 8}
+63     ROM\_SysCtlPWMClockSet(SYSCTL\_PWMDIV\_8);
+64 \textcolor{preprocessor}{#elif PWM\_CLOCK\_DIV == 16}
+65     ROM\_SysCtlPWMClockSet(SYSCTL\_PWMDIV\_16);
+66 \textcolor{preprocessor}{#elif PWM\_CLOCK\_DIV == 32}
+67     ROM\_SysCtlPWMClockSet(SYSCTL\_PWMDIV\_32);
+68 \textcolor{preprocessor}{#elif PWM\_CLOCK\_DIV == 64}
+69     ROM\_SysCtlPWMClockSet(SYSCTL\_PWMDIV\_64);
+70 \textcolor{preprocessor}{#else}
+71 \textcolor{preprocessor}{#error Invalid PWM clock divider}
+72 \textcolor{preprocessor}{#endif}
+73 \}
+\end{DoxyCode}

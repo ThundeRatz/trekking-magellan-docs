@@ -1,0 +1,175 @@
+\hypertarget{group__motors}{}\section{Motors}
+\label{group__motors}\index{Motors@{Motors}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__motors_gad522af7d5cf6fcbf8e873cb7a91df8f3}{motors\+\_\+init} ()
+\begin{DoxyCompactList}\small\item\em Initialize motors P\+W\+M output. \end{DoxyCompactList}\item 
+void \hyperlink{group__motors_ga2974c2cf5e3983d657ff575f24ed8854}{motors} (uint8\+\_\+t command)
+\begin{DoxyCompactList}\small\item\em Parse U\+A\+R\+T0 command. \end{DoxyCompactList}\item 
+void \hyperlink{group__motors_gae344f79e4ba9b2f8acaa0b20080c2c07}{motor\+\_\+left} (int8\+\_\+t pwm\+\_\+value)
+\begin{DoxyCompactList}\small\item\em Set left motor P\+W\+M. \end{DoxyCompactList}\item 
+void \hyperlink{group__motors_ga8726596db4afe2d27c7a6dec5d650b8e}{motor\+\_\+right} (int8\+\_\+t pwm\+\_\+value)
+\begin{DoxyCompactList}\small\item\em Set right motor P\+W\+M. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group__motors_ga04074458bb5888a6503c985940b0047a}{}uint8\+\_\+t \hyperlink{group__motors_ga04074458bb5888a6503c985940b0047a}{speed\+\_\+left}\label{group__motors_ga04074458bb5888a6503c985940b0047a}
+
+\begin{DoxyCompactList}\small\item\em Left speed command received from U\+A\+R\+T0. \end{DoxyCompactList}\item 
+\hypertarget{group__motors_ga163497f8cd668bb915026eb9a06ca129}{}uint8\+\_\+t \hyperlink{group__motors_ga163497f8cd668bb915026eb9a06ca129}{speed\+\_\+right}\label{group__motors_ga163497f8cd668bb915026eb9a06ca129}
+
+\begin{DoxyCompactList}\small\item\em Right speed command received from U\+A\+R\+T0. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Function Documentation}
+\hypertarget{group__motors_gae344f79e4ba9b2f8acaa0b20080c2c07}{}\index{Motors@{Motors}!motor\+\_\+left@{motor\+\_\+left}}
+\index{motor\+\_\+left@{motor\+\_\+left}!Motors@{Motors}}
+\subsubsection[{motor\+\_\+left}]{\setlength{\rightskip}{0pt plus 5cm}void motor\+\_\+left (
+\begin{DoxyParamCaption}
+\item[{int8\+\_\+t}]{pwm\+\_\+value}
+\end{DoxyParamCaption}
+)}\label{group__motors_gae344f79e4ba9b2f8acaa0b20080c2c07}
+
+
+Set left motor P\+W\+M. 
+
+Set P\+W\+M duty cicle. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em pwm\+\_\+value} & new value \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 133 of file motors.\+c.
+
+
+\begin{DoxyCode}
+133                                   \{
+134     \textcolor{keywordflow}{if} (pwm\_value < 0) \{
+135         ROM\_PWMPulseWidthSet(PWM0\_BASE, PWM\_OUT\_2, -pwm\_value);
+136         ROM\_PWMPulseWidthSet(PWM0\_BASE, PWM\_OUT\_3, 0);
+137     \} \textcolor{keywordflow}{else} \{
+138         ROM\_PWMPulseWidthSet(PWM0\_BASE, PWM\_OUT\_2, 0);
+139         ROM\_PWMPulseWidthSet(PWM0\_BASE, PWM\_OUT\_3, pwm\_value);
+140     \}
+141 \}
+\end{DoxyCode}
+\hypertarget{group__motors_ga8726596db4afe2d27c7a6dec5d650b8e}{}\index{Motors@{Motors}!motor\+\_\+right@{motor\+\_\+right}}
+\index{motor\+\_\+right@{motor\+\_\+right}!Motors@{Motors}}
+\subsubsection[{motor\+\_\+right}]{\setlength{\rightskip}{0pt plus 5cm}void motor\+\_\+right (
+\begin{DoxyParamCaption}
+\item[{int8\+\_\+t}]{pwm\+\_\+value}
+\end{DoxyParamCaption}
+)}\label{group__motors_ga8726596db4afe2d27c7a6dec5d650b8e}
+
+
+Set right motor P\+W\+M. 
+
+Set P\+W\+M duty cicle. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em pwm\+\_\+value} & new value \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 148 of file motors.\+c.
+
+
+\begin{DoxyCode}
+148                                    \{
+149     \textcolor{keywordflow}{if} (pwm\_value < 0) \{
+150         ROM\_PWMPulseWidthSet(PWM0\_BASE, PWM\_OUT\_6, -pwm\_value);
+151         ROM\_PWMPulseWidthSet(PWM0\_BASE, PWM\_OUT\_7, 0);
+152     \} \textcolor{keywordflow}{else} \{
+153         ROM\_PWMPulseWidthSet(PWM0\_BASE, PWM\_OUT\_6, 0);
+154         ROM\_PWMPulseWidthSet(PWM0\_BASE, PWM\_OUT\_7, pwm\_value);
+155     \}
+156 \}
+\end{DoxyCode}
+\hypertarget{group__motors_ga2974c2cf5e3983d657ff575f24ed8854}{}\index{Motors@{Motors}!motors@{motors}}
+\index{motors@{motors}!Motors@{Motors}}
+\subsubsection[{motors}]{\setlength{\rightskip}{0pt plus 5cm}void motors (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{command}
+\end{DoxyParamCaption}
+)}\label{group__motors_ga2974c2cf5e3983d657ff575f24ed8854}
+
+
+Parse U\+A\+R\+T0 command. 
+
+Parse command received from U\+A\+R\+T0 and set speed\+\_\+left and speed\+\_\+right accordingly. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em command} & command received. Bit 7 chooses the motor (0 = left, 1 = right). Bit 6 reverses direction. Bits 0..5 choose speed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 115 of file motors.\+c.
+
+
+\begin{DoxyCode}
+115                              \{
+116     \textcolor{keywordflow}{if} (command & MOTOR\_RIGHT)
+117         \textcolor{keywordflow}{if} (command & MOTOR\_REV)
+118             \hyperlink{group__motors_ga163497f8cd668bb915026eb9a06ca129}{speed\_right} = -(command & 0x3f);
+119         \textcolor{keywordflow}{else}
+120             \hyperlink{group__motors_ga163497f8cd668bb915026eb9a06ca129}{speed\_right} = command & 0x3f;
+121     \textcolor{keywordflow}{else}
+122         \textcolor{keywordflow}{if} (command & MOTOR\_REV)
+123             \hyperlink{group__motors_ga04074458bb5888a6503c985940b0047a}{speed\_left} = -(command & 0x3f);
+124         \textcolor{keywordflow}{else}
+125             \hyperlink{group__motors_ga04074458bb5888a6503c985940b0047a}{speed\_left} = command;
+126 \}
+\end{DoxyCode}
+\hypertarget{group__motors_gad522af7d5cf6fcbf8e873cb7a91df8f3}{}\index{Motors@{Motors}!motors\+\_\+init@{motors\+\_\+init}}
+\index{motors\+\_\+init@{motors\+\_\+init}!Motors@{Motors}}
+\subsubsection[{motors\+\_\+init}]{\setlength{\rightskip}{0pt plus 5cm}void motors\+\_\+init (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{group__motors_gad522af7d5cf6fcbf8e873cb7a91df8f3}
+
+
+Initialize motors P\+W\+M output. 
+
+Configure M0\+P\+W\+M2, M0\+P\+W\+M3, M0\+P\+W\+M7 and M0\+P\+W\+M8 at P\+B4, P\+B5, P\+C4 and P\+C5, respectively. Notice that P\+W\+Ms are limited to 64/max\+\_\+duty\+\_\+cicle operation (in our case, 2/3 or 1/2, because we use 16\+V or 12\+V motors with a 24\+V battery) The max. duty cicle can be configured at the source file (see R\+O\+M\+\_\+\+P\+W\+M\+Gen\+Period\+Set at \hyperlink{motors_8c_source}{motors.\+c}). The motor controller board has pull-\/down resistors at F\+E\+T drivers input to drive outputs low while the Tiva is off/ initializing. 
+
+Definition at line 74 of file motors.\+c.
+
+
+\begin{DoxyCode}
+74                    \{
+75     \textcolor{comment}{// Configure PB4, PB5, PC4, PC5 as PWM}
+76     ROM\_GPIOPinConfigure(GPIO\_PB4\_M0PWM2);
+77     ROM\_GPIOPinConfigure(GPIO\_PB5\_M0PWM3);
+78     ROM\_GPIOPinConfigure(GPIO\_PC4\_M0PWM6);
+79     ROM\_GPIOPinConfigure(GPIO\_PC5\_M0PWM7);
+80     ROM\_GPIOPinTypePWM(GPIO\_PORTB\_BASE, GPIO\_PIN\_4 | GPIO\_PIN\_5);
+81     ROM\_GPIOPinTypePWM(GPIO\_PORTC\_BASE, GPIO\_PIN\_4 | GPIO\_PIN\_5);
+82     
+83     \textcolor{comment}{// PWM\_GEN\_1 covers M0PWM2 and M0PWM3}
+84     \textcolor{comment}{// PWM\_GEN\_3 covers M0PWM6 and M0PWM7}
+85     ROM\_PWMGenConfigure(PWM0\_BASE, PWM\_GEN\_1, PWM\_GEN\_MODE\_UP\_DOWN | PWM\_GEN\_MODE\_NO\_SYNC |
+86     PWM\_GEN\_MODE\_DB\_NO\_SYNC| PWM\_GEN\_MODE\_FAULT\_UNLATCHED | PWM\_GEN\_MODE\_FAULT\_NO\_MINPER);
+87     ROM\_PWMGenConfigure(PWM0\_BASE, PWM\_GEN\_3, PWM\_GEN\_MODE\_UP\_DOWN | PWM\_GEN\_MODE\_NO\_SYNC |
+88     PWM\_GEN\_MODE\_DB\_NO\_SYNC | PWM\_GEN\_MODE\_FAULT\_UNLATCHED | PWM\_GEN\_MODE\_FAULT\_NO\_MINPER);
+89     
+90     \textcolor{comment}{// Set the Period (in clock ticks)}
+91     \textcolor{comment}{// Frequency = (SYSTEM\_CLOCK / PWM\_CLOCK\_DIV) / (ui32Gen)}
+92     \textcolor{comment}{// Period (seconds) = PWM\_CLOCK\_DIV * ui32Gen / SYSTEM\_CLOCK}
+93     \textcolor{comment}{// Here, frequency = 1953.125}
+94     ROM\_PWMGenPeriodSet(PWM0\_BASE, PWM\_GEN\_1, 128);
+95     ROM\_PWMGenPeriodSet(PWM0\_BASE, PWM\_GEN\_3, 128);
+96     
+97     \textcolor{comment}{// Enable the PWM generator}
+98     ROM\_PWMGenEnable(PWM0\_BASE, PWM\_GEN\_1);
+99     ROM\_PWMGenEnable(PWM0\_BASE, PWM\_GEN\_3);
+100     
+101     \textcolor{comment}{// Enable PWM}
+102     ROM\_PWMOutputState(PWM0\_BASE, PWM\_OUT\_2\_BIT | PWM\_OUT\_3\_BIT | PWM\_OUT\_6\_BIT | PWM\_OUT\_7\_BIT, \textcolor{keyword}{true});
+103 \}
+\end{DoxyCode}

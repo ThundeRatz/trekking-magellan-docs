@@ -1,0 +1,95 @@
+\hypertarget{group__watchdog}{}\section{Watchdog}
+\label{group__watchdog}\index{Watchdog@{Watchdog}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__watchdog_ga3ffc4b87df65711439814153d4ef25f0}{watchdog\+\_\+init} ()
+\begin{DoxyCompactList}\small\item\em Initialize the watchdog. \end{DoxyCompactList}\item 
+void \hyperlink{group__watchdog_ga1fdcf7b3f0948400f710d14490e49528}{watchdog\+\_\+reset} ()
+\begin{DoxyCompactList}\small\item\em Reset watchdog. \end{DoxyCompactList}\item 
+void \hyperlink{group__watchdog_ga40c70933f6a2f4e658f664ef68a39d6d}{watchdog\+\_\+\+I\+S\+R} ()
+\begin{DoxyCompactList}\small\item\em Watchdog Interrupt Service Routine. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Function Documentation}
+\hypertarget{group__watchdog_ga3ffc4b87df65711439814153d4ef25f0}{}\index{Watchdog@{Watchdog}!watchdog\+\_\+init@{watchdog\+\_\+init}}
+\index{watchdog\+\_\+init@{watchdog\+\_\+init}!Watchdog@{Watchdog}}
+\subsubsection[{watchdog\+\_\+init}]{\setlength{\rightskip}{0pt plus 5cm}void watchdog\+\_\+init (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{group__watchdog_ga3ffc4b87df65711439814153d4ef25f0}
+
+
+Initialize the watchdog. 
+
+Initialize W\+A\+T\+C\+H\+D\+O\+G0\+\_\+\+B\+A\+S\+E with reset capability, debug stall and highest priority and lock it. \begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000002}{Todo}]Is this even needed? \end{DoxyRefDesc}
+
+
+Definition at line 63 of file watchdog.\+c.
+
+
+\begin{DoxyCode}
+63                      \{
+64     ROM\_WatchdogResetEnable(WATCHDOG0\_BASE);
+65     ROM\_WatchdogStallEnable(WATCHDOG0\_BASE);
+66     ROM\_WatchdogReloadSet(WATCHDOG0\_BASE, 30000000);
+67     ROM\_IntPrioritySet(INT\_WATCHDOG, 0);\textcolor{comment}{}
+68 \textcolor{comment}{    ///@todo Is this even needed?}
+69 \textcolor{comment}{}    WatchdogIntRegister(WATCHDOG0\_BASE, \hyperlink{group__watchdog_ga40c70933f6a2f4e658f664ef68a39d6d}{watchdog\_ISR});
+70     ROM\_WatchdogEnable(WATCHDOG0\_BASE);
+71     ROM\_WatchdogIntEnable(WATCHDOG0\_BASE);
+72     ROM\_WatchdogLock(WATCHDOG0\_BASE);
+73 \}
+\end{DoxyCode}
+\hypertarget{group__watchdog_ga40c70933f6a2f4e658f664ef68a39d6d}{}\index{Watchdog@{Watchdog}!watchdog\+\_\+\+I\+S\+R@{watchdog\+\_\+\+I\+S\+R}}
+\index{watchdog\+\_\+\+I\+S\+R@{watchdog\+\_\+\+I\+S\+R}!Watchdog@{Watchdog}}
+\subsubsection[{watchdog\+\_\+\+I\+S\+R}]{\setlength{\rightskip}{0pt plus 5cm}void watchdog\+\_\+\+I\+S\+R (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{group__watchdog_ga40c70933f6a2f4e658f664ef68a39d6d}
+
+
+Watchdog Interrupt Service Routine. 
+
+Called at watchdog interrupt. Will do a software reset of the processor. 
+
+Definition at line 89 of file watchdog.\+c.
+
+
+\begin{DoxyCode}
+89                     \{
+90     \textcolor{comment}{// Reset on first timeout}
+91     \textcolor{comment}{// If the ISR is misconfigured, the interrupt flag will be left set and the}
+92     \textcolor{comment}{// watchdog will reset on second timeout}
+93     ROM\_SysCtlReset();
+94 \}
+\end{DoxyCode}
+\hypertarget{group__watchdog_ga1fdcf7b3f0948400f710d14490e49528}{}\index{Watchdog@{Watchdog}!watchdog\+\_\+reset@{watchdog\+\_\+reset}}
+\index{watchdog\+\_\+reset@{watchdog\+\_\+reset}!Watchdog@{Watchdog}}
+\subsubsection[{watchdog\+\_\+reset}]{\setlength{\rightskip}{0pt plus 5cm}void watchdog\+\_\+reset (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{group__watchdog_ga1fdcf7b3f0948400f710d14490e49528}
+
+
+Reset watchdog. 
+
+Unlock and reset W\+A\+T\+C\+H\+D\+O\+G0\+\_\+\+B\+A\+S\+E. 
+
+Definition at line 79 of file watchdog.\+c.
+
+
+\begin{DoxyCode}
+79                       \{
+80     ROM\_WatchdogUnlock(WATCHDOG0\_BASE);
+81     ROM\_WatchdogReloadSet(WATCHDOG0\_BASE, 30000000);
+82     ROM\_WatchdogLock(WATCHDOG0\_BASE);
+83 \}
+\end{DoxyCode}
