@@ -94,6 +94,10 @@ it. Code for image processing isn't included (was a team's choice to make enough
 code open so others might start a project but keep central design choices up to
 others). Also, tagged *WCXI(2015)*.
 
+* Terminal key input: https://github.com/ThundeRatz/ThunderTrekking/blob/09fff6113b40210e32f71f9e4f57813d088b649f/Main/src/lib/Button.cc
+
+The evdev interface is more suitable.
+
 * Tiva:
 https://github.com/ThundeRatz/Motors-Tiva-C-Series-Launchpad
 
