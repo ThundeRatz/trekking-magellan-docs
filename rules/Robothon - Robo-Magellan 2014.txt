@@ -1,0 +1,84 @@
+Object
+Robo-Magellan is a robotics competition emphasizing autonomous navigation and obstacle avoidance over varied, outdoor terrain. Robots have three opportunities to navigate from a starting point to an ending point and are scored on time required to complete the course with opportunities to lower the score based on contacting intermediate points.
+
+Robot
+The robot must not be constructed in such a way as to damage the environment or other robots. See "Safety" for other restrictions. No robot may weigh more than 50 pounds nor may it use an internal or external combustion engine. The robot must fit inside a 4' x 4' x 4' cube for the entire duration of its run.
+
+Robots must be autonomous. Remote control is not allowed, with the exception of the remote control safety switch(es).
+
+Course
+The course will be outdoors with both natural and manmade terrain and obstacles. The terrain may include pavement, dirt, small rocks, grass, hills, gullies, trees, curbs and weeds. This list is not exhaustive. The robot will not need to traverse a water obstacle to complete the course although weather conditions may make some surfaces wet and/or soggy. The contest will not necessarily be postponed in the event of inclement weather.
+
+Robots will be placed at a designated starting point prior to each run. The destination and bonus waypoints will be designated with latitude/longitude coordinates and marked by 18", orange, plastic traffic cones. Waypoints will be specified as degrees and minutes with minutes carried out to three positions right of the decimal point (N 47 22.124 W 122 32.049). The datum is WGS84.
+
+The total straight-line distance between the start and destination will be less than 300 feet however the shortest route may be longer due to obstacles. The route taken from start to destination, including bonus waypoints, may be significantly longer than 300 feet.
+
+Play
+The latitude and longitude of the start, destination and bonus waypoints will be announced at the start of the contest along with other considerations such as safety matters and course boundaries. Contestants will then have 30 minutes to make software and hardware modifications to their robots. At the end of 30 minutes, a judge will signal the start of the race. Each robot will be given three chances to complete the course and 30 minutes will be provided between attempts for software and hardware modifications.
+
+During the initial 30 minutes between the announcement of the course and the start of the contest, contestants will be able to walk the course to take measurements. Acceptable measuring instruments include a hand-held GPS, tape measure, wheeled measuring device, etc. However, the actual robot will not be allowed on the course. Please see Intended Rule Evolution in the appendix for more information.
+
+Judges will determine the maximum number of robots that can run at once. If more than one robot will be run simultaneously, judges will stagger the start times to minimize the chances of robots interfering with each other. Judges will also designate the order in which robots will start. Consideration will be given to robot speed, intended route, safety features and other factors when determining the starting lineup.
+
+Each robot will work their way toward the destination waypoint following the course its operator deems appropriate. Boundaries will be set and, if a robot crosses a boundary, it will be immediately stopped and no score will be awarded for that attempt. Robots must touch bonus waypoint cones to score bonus points.
+
+Robots must touch the destination waypoint and stop in order to complete the course. Robots that do not complete the course will receive no score for that round (see exception under Scoring).
+
+Each robot is given 15 minutes to complete the course on each of its three attempts. Each attempt is scored individually. After three attempts, the best (lowest) score for each robot will be recorded as that robot's final score. Thirty minutes will be given between attempts to allow for software and hardware modifications.
+
+Robots do not need to travel the same route for each attempt. Contestants may try alternate routes in an effort to improve their score or chances of finishing.
+
+Scoring
+Robots will receive a score corresponding to the number of seconds needed to travel to the destination.
+
+Bonus waypoints are assigned multipliers (between 0.1 and 0.9) prior to the start of the competition and will reflect the difficulty of the terrain, distance from the start/destination and any other factors the judges consider relevant. A robot must physically touch the orange traffic cone marking the waypoint to receive a scoring multiplier. If a robot successfully navigates to more than one bonus waypoint, all applicable bonus multipliers will be applied. For example, if a robot requires 500 seconds to complete the course and visits two bonus waypoints with multipliers of 0.5 and 0.1, the final score for that attempt will be 500 x 0.5 x 0.1 = 25.
+
+If a robot does not finish, it will receive a score indicating the distance remaining to the target cone, along the shortest practical path to the destination (not necessarily a straight line between the robot and the destination cone). Robots that complete the course at least once will always place higher than robots that do not complete the course.
+
+Scoring will be at the sole discretion of the judges.
+
+Judging
+One or more judges will officiate the contest. They will ensure the spirit of these rules are followed and impose scoring penalties or remove a robot from competition if the robot is operating in an unsafe manner or not complying with the spirit of these rules. The decisions of the judges are final.
+
+Safety
+Each robot must demonstrate a suitable fail-safe stop mechanism before it will be allowed to compete. Suitable safety stop mechanism: The robot builder is responsible for devising the safety stop mechanism. Some possibilities:
+Wired tether operated by the handler walking alongside the robot
+Some wireless contrivance operated by the handler
+Some other mechanism, with prior permission from the SRS.
+In any case the safety stop switch must be fail-safe: The robot handler must demonstrate that by dropping, or letting go of the stop mechanism the robot comes to an immediate stop and makes no further movement. The stop mechanism does not need to cut primary power as long as it can be demonstrated that the robot reliably comes to a complete halt.
+
+The safety stop mechanism may be built to allow the robot to continue its run after it is reengaged.
+
+Other controls
+In addition to the kill mechanism, the robot may have a wireless or wired "pause" switch in the event that the robot must be stopped, but not necessarily powered down. An example of this kind of situation (which may or may not ever present itself) is a temporary time-out due to foot or vehicular traffic, which the event coordinators cannot control. This control does not need to be "fail-safe."
+
+No other "remote" control beyond the safety stop & pause are allowed.
+
+Liability
+Each contestant is fully responsible for any damage to person or property caused directly or indirectly by his or her robot. The Seattle Robotics Association, including the Seattle Robotics Society, is not responsible for any damages caused by any competing robots.
+
+Each contestant must sign a waiver of liability prior to the competition. If the waiver is not signed, the robot will not be allowed to compete.
+
+Appendix 1 - Course Layout Guidelines
+When designing an SRS Robo-Magellan course, either for practice or competition, the following guidelines should be considered:
+
+The course boundaries should be a rectangle or at least a polygon. The course should not have out of bounds sections located within the perimeter of the main course boundaries.
+
+The actual distance from the start point to the destination cone, along the most reasonable path of navigation, should not be more than 1,000'.
+
+Three bonus cones are suggested. One should be placed close to the most reasonable path between the starting point and the destination cone and have a multiplier of 0.8 or 0.9. A second cone should be placed in an area that is reachable (doesn't have any terrain or obstacles more difficult than the rest of the course) but is around 100 feet off the most reasonable navigation path. That cone should have a multiplier of 0.5 to 0.7. Finally, one cone should be placed such that, without unusual or exceptionally well-designed navigational capability, robots will not be able to reach it. That cone should have a bonus multiplier of 0.1 or 0.2.
+
+The robot should have to travel over a variety of diverse terrain such as grass, sand and concrete. There should be some spots where GPS coverage is poor or doesn't exist. Obstacles such as trees, garbage cans and park benches should be included.
+
+The robots should not be able to see the destination cone until it has traveled at least half way to the cone. A wall, hill or other obstacle may hide the cone. There should be no straight-line path between the start and destination points without some significant obstacle such as a curb, building, tree, stream, shrubbery or other similar barrier.
+
+The course must not be impossible. A more satisfying contest for both builders and spectators will be had if robots are scored by time rather than distance to the destination cone.
+
+Appendix 2 - Intended Rule Evolution
+As Magellan robots become more capable, it is the intention of the SRS to evolve these rules to present a greater challenge. The following proposals are not currently part of the Robo-Magellan rules but are provided to give builders a better idea of how the contest may be run in the future so they can design their robots more appropriately.
+
+The maximum distance between the starting point and the destination cone will be increased. The difficulty of the terrain will become more complex by adding steeper hills, more varied surfaces, etc. Finally, navigation to one or more intermediate points may be required prior to navigating to the destination cone. Other changes may be made to increase the difficulty of the contest.
+
+The SRS intends to drop the rule stating contestants can walk the course for the purpose of taking measurements. The reason for dropping the rule is to offload more of the obstacle avoidance and path planning intelligence from the contestant to the robot. Because of this intended direction, we will continue supplying coordinates in written form at the beginning of each contest. Some sort of electronic distribution of the coordinates is being considered but the delivery mechanism has not been finalized.
+
+The SRS does not intend to increase the maximum weight and size of a robot unless it becomes obvious that robots can no longer be built to run SRS Robo-Magellan courses without being physically larger or heavier. This is unlikely.
