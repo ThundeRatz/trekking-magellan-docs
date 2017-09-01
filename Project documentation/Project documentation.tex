@@ -167,13 +167,13 @@ United States.
 \end{figure}
 
 \subsection{Third iteration}
-The third iteration is the current project. Smaller and lighter, its goal is to
-create a robust project, with sensor redundancy and new sensing technologies.
-It currently uses a Raspberry Pi B 2.0 as its main computer. One of our goals is
-to make embedded computer vision and learning and SLAM possible in the project.
-To reach them real time in an embedded platform, GPU acceleration will be required.
+The third iteration was smaller and lighter. Embedded computer vision in real time was made
+possible due to the Jetson TK1 board granted by NVIDIA, using an USB webcam. The sensors used
+for robot localization were a GPS device and a 9-axis IMU. Furthermore, a lidar sensor was
+used for obstacle avoidance.
 The robot was used in Winter Challenge XI, but due to problems in our electronics
-it got 5th place. It was also used in Summer Challenge III, achieving 2nd place, RoboGames 2016 on 3rd and Winter Challenge XII on 4th. 
+it got 5th place. It was also used in Summer Challenge III, achieving 2nd place, RoboGames
+2016 on 3rd and Winter Challenge XII on 4th.
 
 \begin{figure}[H]
     \centering
@@ -202,15 +202,23 @@ it got 5th place. It was also used in Summer Challenge III, achieving 2nd place,
 
 
 \subsection{Fourth iteration}
-This project is currently intended on being remastered once more. Now optimized in space, its goal is to go for full capability of the provided hardware. Now with more sensors and new interpretation technologies.
-It currently uses a Nvidia TK1 as its main computer. One of our goals is
-to make object identification through machine-learning in the project.
-To develop the neural network systems capable of machine-learning, systems with support for Digits will be required.
-
+This is the current version of the project. A RC car model is now used as the robot's
+structure and motion system. The electronic had to be adapted to this model.
+In addition to the sensors of the previous version, a magnetic encoder is used for
+localization. The computer vision was greatly improved by an object detection neural network.
+However, the frame rate during inference is not as high as desired (currently around 8 FPS), which
+limits the speed of the robot. Therefore, a better GPU is needed.
+The robot was used in Winter Challenge XIII (2017), but due to problems in our electronics
+it achieved fourth place.
 \section{Past achievements} \label{past-achievements}
-Our robot is one of the national favorites and proudly the international
-third place. Being a reasonably recent project, it hasn't gone through a lot of
-competitions. Following is a list of past achievements.
+Our robot is one of the national favorites. Following is a list of past achievements.
+
+% Colocar imagem do Winter aqui
+%\begin{figure}[H]
+%    \centering
+%    \includegraphics[width=0.45\textwidth]{../Pictures/v3/SCIII2015/[Imagem aqui].jpg}
+%    \caption{Winter Challenge XIII (São Paulo, Brazil), 2017}
+%\end{figure}
 
 \subsection*{2014}
 \setcounter{subsubsection}{0}
@@ -224,6 +232,9 @@ competitions. Following is a list of past achievements.
 \setcounter{subsubsection}{0}
 \subsubsection{RoboGames 2016} Third place
 \subsubsection{Winter Challenge XII} Fourth place
+\subsection*{2017}
+\setcounter{subsubsection}{0}
+\subsubsection{Winter Challenge XIII} Fourth place
 
 \section{Partnership}
 Companies willing to help the project are encouraging university research and
