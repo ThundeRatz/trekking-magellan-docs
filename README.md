@@ -19,11 +19,6 @@ doxygen Doxyfile
 ```
 at our repositories that have a Doxyfile.
 
-## This is an incomplete version!
-Pretty much incomplete :(. We are working hard to get this done with pictures
-and data about the project and its challenges, problems we faced, etc. But it
-will take some time.
-
 ## License
 [<img src="https://i.creativecommons.org/l/by/4.0/88x31.png">](http://creativecommons.org/licenses/by/4.0/)
 
