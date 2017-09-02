@@ -86,14 +86,15 @@ The goals currently set for the project are:
 \setcounter{subsection}{0}
 \subsection{Increased reliability} Use sensor redundancy and sensor fusion
 algorithms~\cite{kalman} to enhance reliability under bad conditions.
-\subsection{CUDA-based Computer Vision} Port the already developed knowledge of
-computer vision using OpenCV to CUDA.
 \subsection{SLAM research} Try to use laser based SLAM techniques for
 location and evaluate different SLAM algorithms. Existent laser SLAM CUDA
 solutions are mostly under development~\cite{CUDA-PHDSLAM}, but some are complete
 ~\cite{rgbdslam_v2} and papers and other universities' research are available
 ~\cite{CUDA-IEEE}. If possible, use existing or create CUDA solutions based on current
 research.
+\subsection{Avoid problems in electronics}  Problems in electronics had major consequences
+in the results from the last competitions. Therefore, it is necessary to make hardware
+connections more reliable.
 
 \section{Competitions}
 \setcounter{subsection}{0}
@@ -206,10 +207,21 @@ This is the current version of the project. A RC car model is now used as the ro
 structure and motion system. The electronic had to be adapted to this model.
 In addition to the sensors of the previous version, a magnetic encoder is used for
 localization. The computer vision was greatly improved by an object detection neural network.
-However, the frame rate during inference is not as high as desired (currently around 8 FPS), which
-limits the speed of the robot. Therefore, a better GPU is needed.
+However, the frame rate during inference is not as high as desired (currently around 8 FPS),
+which limits the speed of the robot. Therefore, a better GPU is needed. Also, ROS~\cite{ROS},
+which foster a large community of user-contributed packages, began to be used in the current
+version.
 The robot was used in Winter Challenge XIII (2017), but due to problems in our electronics
 it achieved fourth place.
+\setcounter{subsubsection}{0}
+\subsubsection{The neural network}
+The neural network used in this project is Darknet's YOLO~\cite{YOLO}, which is an object
+detection network. This kind of network infer the type and localization of an object in an
+image. The dataset for training was built with help from the entire team.
+\subsubsection{ROS}
+Apart from using user-contributed packages from the ROS community, we have also created a
+package to integrate YOLO with ROS. This package is used in this version of the project,
+but it is free for public use.
 \section{Past achievements} \label{past-achievements}
 Our robot is one of the national favorites. Following is a list of past achievements.
 
@@ -271,6 +283,13 @@ the Jetson TK1 GPU used for this project.
     RoboCore. \emph{Sua tecnologia à prova}. https://www.robocore.net/
     \bibitem{Campus-Future}
     Campus Party. \emph{Campus Future}. http://brasil.campus-party.org/conteudos/open-campus/campus-future/
+    \bibitem{YOLO}
+    Darknet's YOLO. \emph{YOLO: Real-time object detection system}. https://pjreddie.com/darknet/yolo/
+    \bibitem{ROS}
+    ROS. \emph{Robot Operating System}. http://www.ros.org/
+    \bibitem{ROS-YOLO}
+    YOLO integration with ROS. \emph{ROS YOLO}. \url{https://github.com/ThundeRatz/ros_yolo2}
+
 \end{thebibliography}
 
 \end{document}
