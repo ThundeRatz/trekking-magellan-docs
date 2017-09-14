@@ -52,7 +52,7 @@ of São Paulo (USP) to bring the international robot combat competition to Brazi
 the team does research and development on robotics in the biggest university in
 South America. Throughout the years, it expanded into more categories and
 competitions, with highlight on its internationally awarded sumo robots
-~\cite{All Japan Robot Sumo} and Robo-Magellan~\cite{SRS}. After over 10 years
+~\cite{International Robot Sumo Tournament} and Robo-Magellan~\cite{SRS}. After over 15 years
 of experience, learning and university research, the ThundeRatz team~\cite{ThundeRatz}
 has some of the most known and award-winning robots of Brazil, reason of pride to
 the members and motivation for more innovations.
@@ -86,14 +86,15 @@ The goals currently set for the project are:
 \setcounter{subsection}{0}
 \subsection{Increased reliability} Use sensor redundancy and sensor fusion
 algorithms~\cite{kalman} to enhance reliability under bad conditions.
-\subsection{CUDA-based Computer Vision} Port the already developed knowledge of
-computer vision using OpenCV to CUDA.
 \subsection{SLAM research} Try to use laser based SLAM techniques for
 location and evaluate different SLAM algorithms. Existent laser SLAM CUDA
 solutions are mostly under development~\cite{CUDA-PHDSLAM}, but some are complete
 ~\cite{rgbdslam_v2} and papers and other universities' research are available
 ~\cite{CUDA-IEEE}. If possible, use existing or create CUDA solutions based on current
 research.
+\subsection{Avoid problems in electronics}  Problems in electronics had major consequences
+in the results from the last competitions. Therefore, it is necessary to make hardware
+connections more reliable.
 
 \section{Competitions}
 \setcounter{subsection}{0}
@@ -167,13 +168,13 @@ United States.
 \end{figure}
 
 \subsection{Third iteration}
-The third iteration is the current project. Smaller and lighter, its goal is to
-create a robust project, with sensor redundancy and new sensing technologies.
-It currently uses a Raspberry Pi B 2.0 as its main computer. One of our goals is
-to make embedded computer vision and learning and SLAM possible in the project.
-To reach them real time in an embedded platform, GPU acceleration will be required.
+The third iteration was smaller and lighter. Embedded computer vision in real time was made
+possible due to the Jetson TK1 board granted by NVIDIA, using an USB webcam. The sensors used
+for robot localization were a GPS device and a 9-axis IMU. Furthermore, a lidar sensor was
+used for obstacle avoidance.
 The robot was used in Winter Challenge XI, but due to problems in our electronics
-it got 5th place. It was also used in Summer Challenge III, achieving 2nd place, RoboGames 2016 on 3rd and Winter Challenge XII on 4th. 
+it got 5th place. It was also used in Summer Challenge III (2nd place), RoboGames 2016
+(3rd place) and Winter Challenge XII (4th place).
 
 \begin{figure}[H]
     \centering
@@ -202,15 +203,40 @@ it got 5th place. It was also used in Summer Challenge III, achieving 2nd place,
 
 
 \subsection{Fourth iteration}
-This project is currently intended on being remastered once more. Now optimized in space, its goal is to go for full capability of the provided hardware. Now with more sensors and new interpretation technologies.
-It currently uses a Nvidia TK1 as its main computer. One of our goals is
-to make object identification through machine-learning in the project.
-To develop the neural network systems capable of machine-learning, systems with support for Digits will be required.
+This is the current version of the project. A RC car model is now used as the robot's
+structure and motion system. The electronic had to be adapted to this model.
+In addition to the sensors of the previous version, a magnetic encoder is used for
+localization. The computer vision was greatly improved by an object detection neural network.
+However, the frame rate during inference is not as high as desired (currently around 8 FPS),
+which limits the speed of the robot. Therefore, a better GPU is needed. Also, ROS~\cite{ROS},
+which foster a large community of user-contributed packages, began to be used in the current
+version.
+The robot was used in Winter Challenge XIII (2017), but due to problems in our electronics
+it achieved fourth place.
+\setcounter{subsubsection}{0}
+\subsubsection{The neural network}
+The neural network used in this project is Darknet's YOLO~\cite{YOLO}, which is an object
+detection network. This kind of network infer the type and localization of an object in an
+image. The dataset for training was built with help from the entire team.
+\subsubsection{ROS}
+Apart from using user-contributed packages from the ROS community, we have also created a
+package to integrate YOLO with ROS. This package is used in this version of the project,
+but it is free for public use.
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=0.45\textwidth]{../Pictures/v4/WCXIII2017/IMG_4664.JPG}
+   \caption{Winter Challenge XIII (São Paulo, Brazil), 2017}
+\end{figure}
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=0.45\textwidth]{../Pictures/v4/WCXIII2017/predictions.png}
+   \caption{Cone detection using Darknet's YOLO neural network, 2017}
+\end{figure}
 
 \section{Past achievements} \label{past-achievements}
-Our robot is one of the national favorites and proudly the international
-third place. Being a reasonably recent project, it hasn't gone through a lot of
-competitions. Following is a list of past achievements.
+Our robot is one of the national favorites. Following is a list of past achievements.
 
 \subsection*{2014}
 \setcounter{subsubsection}{0}
@@ -224,6 +250,9 @@ competitions. Following is a list of past achievements.
 \setcounter{subsubsection}{0}
 \subsubsection{RoboGames 2016} Third place
 \subsubsection{Winter Challenge XII} Fourth place
+\subsection*{2017}
+\setcounter{subsubsection}{0}
+\subsubsection{Winter Challenge XIII} Fourth place
 
 \section{Partnership}
 Companies willing to help the project are encouraging university research and
@@ -237,8 +266,8 @@ Leddar Sensor Evaluation Kit and NVIDIA Corporation with the donation of
 the Jetson TK1 GPU used for this project.
 
 \begin{thebibliography}{30}
-    \bibitem{All Japan Robot Sumo}
-    FSI-All Japan Robot-Sumo Tournament. \emph{Robot Sumo Overview}. http://www.fsi.co.jp/sumo-e/out/out00000.html
+    \bibitem{International Robot Sumo Tournament}
+    FSI-International Robot Sumo Tournament. \emph{Robot Sumo Overview}. http://www.fsi.co.jp/sumo-e/out/out00000.html
     \bibitem{SRS}
     Seattle Robotics Society. \emph{SRS Robo-Magellan}. http://www.robothon.org/robothon/robo-magellan.php
     \bibitem{ThundeRatz}
@@ -260,6 +289,13 @@ the Jetson TK1 GPU used for this project.
     RoboCore. \emph{Sua tecnologia à prova}. https://www.robocore.net/
     \bibitem{Campus-Future}
     Campus Party. \emph{Campus Future}. http://brasil.campus-party.org/conteudos/open-campus/campus-future/
+    \bibitem{YOLO}
+    Darknet's YOLO. \emph{YOLO: Real-time object detection system}. https://pjreddie.com/darknet/yolo/
+    \bibitem{ROS}
+    ROS. \emph{Robot Operating System}. http://www.ros.org/
+    \bibitem{ROS-YOLO}
+    YOLO integration with ROS. \emph{ROS YOLO}. \url{https://github.com/ThundeRatz/ros_yolo2}
+
 \end{thebibliography}
 
 \end{document}
